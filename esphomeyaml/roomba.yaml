@@ -1,0 +1,41 @@
+esphomeyaml:
+  name: roomba
+  platform: ESP32
+  board: esp32dev
+  use_custom_code: True
+
+wifi:
+  ssid: 'Wiggle'
+  password: '123!@#abc'
+  manual_ip:
+    static_ip: 192.168.1.34
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+  domain:
+    '.glousher.com'
+    
+mqtt:
+  broker: '192.168.1.51'
+  username: ''
+  password: ''
+  discovery_prefix: 'homeassistant_autogen'
+ # birth_message:
+  #  topic: 'status/roomba'
+ #   payload: 'online'
+ # will_message:
+ #   topic: 'status/roomba'
+ #   payload: 'offline'
+  #shutdown_message:
+   # topic: 'status/roomba'
+   # payload: 'clean shutdown'
+
+# Enable logging
+logger:
+
+ota:
+  password: 'update'
+ 
+sensor:
+  - platform: wifi_signal
+    name: "WiFi Signal Sensor"
+    update_interval: 15s

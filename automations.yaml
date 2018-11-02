@@ -1,0 +1,143 @@
+- id: '1538681182328'
+  alias: Home Assistant Shutdown
+  trigger:
+  - event: shutdown
+    platform: homeassistant
+  condition: []
+  action:
+  - data:
+      payload: offline
+      qos: 1
+      retain: true
+      topic: status/homeassistant
+    service: mqtt.publish
+- id: '1538715712827'
+  alias: Enable Outlet when Rover is Home
+  trigger:
+  - entity_id: group.rover
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      entity_id: switch.teslacharger
+    service: switch.turn_on
+- id: '1538717746774'
+  alias: Disable Outlet when Rover leaves Home
+  trigger:
+  - entity_id: group.rover
+    platform: state
+    to: not_home
+  condition: []
+  action:
+  - data:
+      entity_id: switch.teslacharger
+    service: switch.turn_off
+- id: '1538719850300'
+  alias: Turn Gold Lamp Blue When Soil Moisture is Low
+  trigger:
+  - below: '15'
+    entity_id: sensor.moisture
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      brightness_pct: 80
+      color_name: blue
+      entity_id: light.gold_lamp
+    service: light.turn_on
+- id: '1538720130028'
+  alias: Set Gold Lamp to Relax when Soil Moisture is OK
+  trigger:
+  - above: '40'
+    entity_id: sensor.moisture
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: light.gold_lamp
+    state: 'on'
+  action:
+  - data:
+      brightness_pct: 50
+      entity_id: light.gold_lamp
+      profile: relax
+    service: light.turn_on
+- id: '1538743670093'
+  alias: Do at Sunrise
+  trigger:
+  - event: sunrise
+    platform: sun
+  condition: []
+  action:
+  - data:
+      entity_id: switch.bugzapper
+    service: switch.turn_off
+- id: '1538743708457'
+  alias: Do at Sunset
+  trigger:
+  - event: sunset
+    platform: sun
+  condition: []
+  action:
+  - data:
+      entity_id: switch.bugzapper
+    service: switch.turn_on
+- id: '1538746855607'
+  alias: Warning for Upcoming SSL Expirey
+  trigger:
+  - below: '10'
+    entity_id: sensor.ssl_certificate_expiry
+    platform: numeric_state
+  condition: []
+  action:
+  - alias: ''
+    data:
+      message: The SSL certificate that is currently used for www.glousher.com will
+        expire in less than 10 days. Please renew asap!
+      title: SSL Certificate Expires Soon
+    service: persistent_notification.create
+- id: '1538747724448'
+  alias: Daily Let's Encrypt Renewal
+  trigger:
+  - at: 00:00:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      addon: core_letsencrypt
+    service: hassio.addon_start
+- id: '1539078291420'
+  alias: HTML5 Notification Click Action - Open Door
+  trigger:
+  - event_data:
+      action: open_door
+    event_type: html5_notification.clicked
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.garage
+    service: light.toggle
+- id: '1539110174578'
+  alias: Home Assistant Start
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - data:
+      entity_id: switch.flux
+    service: switch.turn_on
+- id: '1540154226330'
+  alias: Stop charging Rover
+  trigger:
+  - at: 07:00:00
+    platform: time
+  condition:
+  - condition: state
+    entity_id: binary_sensor.tesla_model_3_5yj3e1ea8hf000718_charger_sensor
+    state: 'on'
+  action:
+  - data:
+      entity_id: switch.tesla_model_3_5yj3e1ea8hf000718_charger_switch
+    service: switch.turn_off

@@ -1,0 +1,8 @@
+.cloud/
+secrets.yaml
+.shopping_list.json
+tts/
+.storage/
+deps/
+home-assistant.log
+home-assistant_v2.db

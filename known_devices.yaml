@@ -1,0 +1,32 @@
+
+tesla_model_3_5yj3e1ea8hf000718_location_tracker:
+  hide_if_away: false
+  icon: mdi:car-side
+  mac: B4:E6:2A:E9:00:29
+  name: Rover-gps
+  picture:
+  track: true
+
+b4e62ae90d29:
+  hide_if_away: false
+  icon: mdi:car-connected
+  mac: B4:E6:2A:E9:0D:29
+  name: Rover-nmap
+  picture:
+  track: true
+
+404e36902186:
+  hide_if_away: false
+  icon: mdi:cellphone-wireless
+  mac: 40:4E:36:90:21:86
+  name: Jeff-nmap
+  picture:
+  track: true
+
+android957114c2e834a0d6gloushercom:
+  hide_if_away: false
+  icon: mdi:cellphone-wireless
+  mac: 4C:4E:03:CE:F8:B5
+  name: Mary Frances-nmap
+  picture:
+  track: true

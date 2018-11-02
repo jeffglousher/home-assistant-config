@@ -1,0 +1,281 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 37.545253
+  longitude: -121.972196
+  #radius: 50
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 17
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Los_Angeles
+  # Customization file
+  customize: !include customize.yaml
+  
+zone:
+  - name: Home
+    latitude: 37.545253
+    longitude: -121.972196
+    radius: 50
+  - name: Estates
+    latitude: 37.5465142
+    longitude: -121.9718834
+    radius: 150
+
+recorder:
+  db_url: mysql://hassio:UkP5278494mkxRm5ORI1MB1uAGhQkcTvMEMCZW29dVHyqX0P6PDFjqKo8BZKic7K4jjGXUkKLvWt5hF57xa2MHY41VEZYBRZuc6G@192.168.1.51/homeassistant?charset=utf8
+  purge_keep_days: 365
+  
+# configure the connection to the TICK stack
+influxdb:
+  host: 192.168.1.51
+  database: homeassistant
+  username: !secret influxdb_user
+  password: !secret influxdb_password
+# Show links to resources in log and frontend
+#introduction:
+
+media_player:
+  - platform: samsungtv
+    name: TV
+    host: 192.168.1.30
+# 
+mqtt:
+  broker: 192.168.1.51
+  discovery: true
+  discovery_prefix: homeassistant_autogen
+  birth_message:
+    topic: 'status/homeassistant'
+    payload: 'online'
+    qos: 1
+    retain: true
+  will_message:
+    topic: 'status/homeassistant'
+    payload: 'offline'
+    qos: 1
+    retain: true
+
+# Enables the frontend
+frontend:
+  themes:
+    darkcyan:
+# Main colors that can be changed
+      primary-color: "#00bcd4"
+      disabled-text-color: "#545454"
+      divider-color: "rgba(255, 255, 255, 0.12)"
+      paper-card-background-color: "#4e4e4e"
+      paper-grey-200: "#191919"
+      paper-item-icon-color: "#d3d3d3"
+      paper-listbox-background-color: "#202020"
+      paper-listbox-color: "#FFFFFF"      
+      primary-background-color: "#303030"
+      primary-text-color: "#cfcfcf"      
+      secondary-background-color: "#2b2b2b"
+      secondary-text-color: "#04a7bc"
+# Colors based on variables, see above
+      label-badge-background-color: "var(--secondary-background-color)"
+      label-badge-text-color: "var(--text-primary-color)"
+      paper-card-header-color: "#var(--paper-item-icon-color)"
+      paper-grey-50: "var(--primary-text-color)"
+      paper-item-icon-active-color: "var(--primary-color)"
+      paper-item-icon_-_color: "var(--primary-text-color)"
+      paper-slider-active-color: "var(--primary-color)"
+      paper-slider-knob-color: "var(--primary-color)"
+      paper-slider-knob-start-color: "var(--primary-color)"
+      paper-slider-pin-color: "var(--primary-color)"
+      paper-slider-secondary-color: "var(--light-primary-color)"     
+      paper-toggle-button-checked-ink-color: "var(--dark-primary-color)"
+      paper-toggle-button-checked-button-color: "var(--primary-color)"
+      paper-toggle-button-checked-bar-color: "var(--light-primary-color)"
+      paper-toggle-button-unchecked-bar-color: "var(--primary-text-color)"
+
+# Enables configuration UI
+config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+http:
+  base_url: https:/www.glousher.com:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+  ignore:
+    - netgear_router
+    
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+weather:
+  - platform: darksky
+    api_key: 3f8b7644e574246d5e043a5c699219ee
+    name: Weather
+# Tesla car tracking
+tesla:
+  username: !secret tesla_user
+  password: !secret tesla_password
+
+switch:
+  - platform: wake_on_lan
+    mac_address: "70:85:c2:4c:de:8f"
+    name: Thunder
+    host: 192.168.1.81
+  - platform: flux
+    lights:
+      - light.kitchen
+      - light.dining
+      - light.living_room
+      - light.garage
+    mode: mired
+
+shopping_list:
+
+binary_sensor:
+  - platform: iss
+    show_on_map: false
+  - platform: workday
+    country: US
+    province: CA
+ 
+sensor:
+  - platform: darksky
+    name: Weather
+    api_key: 3f8b7644e574246d5e043a5c699219ee
+    monitored_conditions:
+      - summary
+      - icon
+      - nearest_storm_distance
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - precip_accumulation
+      - temperature
+      - apparent_temperature
+      - dew_point
+      - wind_speed
+      - wind_bearing
+      - cloud_cover
+      - humidity
+      - pressure
+      - visibility
+      - ozone
+      - temperature_high
+      - temperature_low
+      - apparent_temperature_high
+      - apparent_temperature_low
+      - precip_intensity_max
+      - uv_index
+      - moon_phase
+  - platform: template
+    sensors:
+      rover_home_away:
+        friendly_name: Rover
+        value_template: >-
+          {% if is_state('group.rover', 'home') %}
+            Home
+          {% elif states.device_tracker.tesla_model_3_5yj3e1ea8hf000718_location_tracker.state != 'not_home' %}
+            {{ states.device_tracker.tesla_model_3_5yj3e1ea8hf000718_location_tracker.state }}
+          {% else %}
+            Away
+          {% endif %}
+        icon_template: >-
+          {% if is_state('group.rover', 'home') %}
+            mdi:account
+          {% else %}
+            mdi:account-outline
+          {% endif %}
+
+  - platform: cert_expiry
+    host: www.glousher.com
+    port: 8123
+# moon 
+  - platform: moon
+# HassOS monitor
+  - platform: systemmonitor
+    resources:
+      - type: disk_free
+        arg: /home
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_free
+      - type: memory_use_percent
+      - type: swap_use_percent
+      - type: load_1m
+      - type: network_in
+        arg: 'enp2s1'
+      - type: network_out
+        arg: 'enp2s1'
+      - type: processor_use
+# System Uptime
+  - platform: uptime
+    unit_of_measurement: hours
+# Tesla - Rover charger power tracking
+  - platform: template
+    sensors:
+      tesla_watts:
+        friendly_name: "Tesla Charging Power"
+        #icon: mdi:car-battery
+        unit_of_measurement: "w"
+        value_template: '{% if states.switch.teslacharger %}{{ states.switch.teslacharger.attributes.current_power_w }}{% else %}Off{% endif %}'
+     
+plant:
+ window:
+   sensors:
+     moisture: sensor.moisture
+#      battery: sensor.my_sensor_battery
+     temperature: sensor.temperature
+#      conductivity: sensor.my_sensor_conductivity
+#      brightness: sensor.my_sensor_brightnes
+     
+     
+device_tracker:
+  - platform: nmap_tracker
+    hosts:
+    - 192.168.1.31
+    - 192.168.1.32
+    - 192.168.1.33
+  - platform: google_maps
+    username: !secret google_user_gh
+    password: !secret google_password_gh
+    track_new_devices: true
+# Text to speech
+tts:
+  - platform: google
+  
+notify:
+  - platform: html5
+    name: notify
+    gcm_api_key: 'AAAAFQmbRdg:APA91bEFUyObCtGT-C4602ZOfYFAFDN-_SanFBesqYG_ZILiKV_d0mQvSZN2rwHSGwWAUHaXiOng92SyEgK-TW-jIGZBjkPbFlLLP-yBDlCgJLzmfi0kA8okCgVpHlo0O9t1DfZI0J6B'
+    gcm_sender_id: '90355484120'
+    
+# Cloud
+cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
