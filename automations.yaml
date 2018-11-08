@@ -129,7 +129,7 @@
       entity_id: switch.flux
     service: switch.turn_on
 - id: '1540154226330'
-  alias: Stop charging Rover
+  alias: Stop charging Rover on a workday
   trigger:
   - at: 07:00:00
     platform: time
@@ -137,6 +137,31 @@
   - condition: state
     entity_id: binary_sensor.tesla_model_3_5yj3e1ea8hf000718_charger_sensor
     state: 'on'
+  - condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: 'on'
+  - condition: state
+    entity_id: group.rover
+    state: home
+  action:
+  - data:
+      entity_id: switch.tesla_model_3_5yj3e1ea8hf000718_charger_switch
+    service: switch.turn_off
+- id: '1541340849898'
+  alias: Stop charging Rover on a weekend/holiday
+  trigger:
+  - at: '15:00:00'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: binary_sensor.tesla_model_3_5yj3e1ea8hf000718_charger_sensor
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: 'off'
+  - condition: state
+    entity_id: group.rover
+    state: home
   action:
   - data:
       entity_id: switch.tesla_model_3_5yj3e1ea8hf000718_charger_switch

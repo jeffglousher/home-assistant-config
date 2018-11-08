@@ -1,7 +1,7 @@
 title: Estates
 views:
-  - id: 0  # Automatically created id
-    title: Home
+  - id: overview  # Automatically created id
+    title: Home Overview
     icon: mdi:home
     cards:
       - id: 961aa9b141b742558751a72d13f33864  # Automatically created id
@@ -10,14 +10,6 @@ views:
       - id: d6ce7657e6a24af89470fea37c5ce8ee  # Automatically created id
         type: plant-status
         entity: plant.window
-      - id: 69fd0431b8444b5d96e83e40c666f6e3  # Automatically created id
-        type: entities
-        title: all switches
-        show_header_toggle: false
-        entities:
-          - switch.bugzapper
-          - switch.flux
-          - switch.thunder
       - id: 8f5df9b0db7d465a8dd6319660e876cd  # Automatically created id
         type: entities
         title: all lights
@@ -28,9 +20,32 @@ views:
           - light.garage
           - light.kitchen
           - light.living_room
+# Automatically created id
+      - type: entities
+        title: all switches
+        show_header_toggle: false
+        entities:
+          - switch.bugzapper
+          - switch.thunder
       - id: 194a0c25bf234ad0adfa7b4e5825a632  # Automatically created id
         type: media-control
         entity: media_player.tv
+  - id: lights
+    title: All Lights
+    icon: mdi:lightbulb
+    cards:
+      - type: entity-filter
+        entities:
+          - light.bedroom
+          - light.dining
+          - light.garage
+          - light.kitchen
+          - light.living_room
+        state_filter:
+         - on
+        card: 
+          type: glance
+          title: Lights that are On
   - id: rover
     title: Rover
     icon: mdi:car

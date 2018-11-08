@@ -17,6 +17,7 @@
   - data:
       data:
         url: https://www.glousher.com:8123
-      message: All your base are belong to us!
-      title: Alert! - Alien Invasion
+      message: Please feed me water as soon as possible! I'm wilting and I can't get
+        up again...      -Leaf an impression
+      title: The Plant is Hungry!
     service: notify.notify_mary_frances
