@@ -8,3 +8,7 @@ home-assistant.log
 home-assistant_v2.db
 .google_maps_location_sharing.cookies
 html5_push_registrations.conf
+.uuid
+.esphomelib_version
+esphomeyaml/roomba/.pioenvs/
+esphomeyaml/roomba/.piolibdeps/
