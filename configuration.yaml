@@ -25,7 +25,7 @@ zone:
     radius: 150
 
 recorder:
-  db_url: mysql://hassio:UkP5278494mkxRm5ORI1MB1uAGhQkcTvMEMCZW29dVHyqX0P6PDFjqKo8BZKic7K4jjGXUkKLvWt5hF57xa2MHY41VEZYBRZuc6G@192.168.1.51/homeassistant?charset=utf8
+  db_url: !secret db_url
   purge_keep_days: 365
   
 # configure the connection to the TICK stack
@@ -60,39 +60,131 @@ mqtt:
 # Enables the frontend
 frontend:
   themes:
-    darkcyan:
-# Main colors that can be changed
-      primary-color: "#00bcd4"
-      disabled-text-color: "#545454"
-      divider-color: "rgba(255, 255, 255, 0.12)"
-      paper-card-background-color: "#4e4e4e"
-      paper-grey-200: "#191919"
-      paper-item-icon-color: "#d3d3d3"
-      paper-listbox-background-color: "#202020"
-      paper-listbox-color: "#FFFFFF"      
-      primary-background-color: "#303030"
-      primary-text-color: "#cfcfcf"      
-      secondary-background-color: "#2b2b2b"
-      secondary-text-color: "#04a7bc"
-# Colors based on variables, see above
-      label-badge-background-color: "var(--secondary-background-color)"
-      label-badge-text-color: "var(--text-primary-color)"
-      paper-card-header-color: "#var(--paper-item-icon-color)"
+    solarized-light:
+        # Main colors
+        primary-color: '#586e75'                                                        # Header
+        accent-color: '#fdf6e3'                                                         # Accent color
+        dark-primary-color: '#586e75'                                                   # Hyperlinks                                         
+        light-primary-color: 'var(--accent-color)'                                      # Horizontal line in about
+                                                                                    
+        # Text colors                                                                  
+        primary-text-color: '#657b83'                                                   # Primary text colour, here is referencing dark-primary-color
+        text-primary-color: 'var(--primary-text-color)'                                 # Primary text colour
+        secondary-text-color: '#93a1a1'                                                 # For secondary titles in more info boxes etc.
+        disabled-text-color: '#7F848E'                                                  # Disabled text colour
+        label-badge-border-color: 'green'                                               # Label badge border, just a reference value   
+        
+        # Background colors                                                            
+        primary-background-color: '#fdf6e3'                                             # Settings background
+        secondary-background-color: '#eee8d5'                                           # Main card UI background  
+        divider-color: 'rgba(0, 0, 0, .12)'                                             # Divider 
+          
+        
+        # Table rows                                                                   
+        table-row-background-color: '#fdf6e3'                                           # Table row
+        table-row-alternative-background-color: '#eee8d5'                               # Table row alternative
+                                                                                    
+        # Nav Menu                                                                   
+        paper-listbox-color: 'var(--primary-color)'                                     # Navigation menu selection hoover
+        paper-listbox-background-color: 'var(--accent-color)'                           # Navigation menu background
+        paper-grey-50: 'var(--primary-text-color)'                                   
+        paper-grey-200: 'var(--accent-color)'                                           # Navigation menu selection
+                                                                                    
+        # Paper card                                                               
+        paper-card-header-color: 'var(--dark-primary-color)'                            # Card header text colour
+        paper-card-background-color: 'var(--accent-color)'                              # Card background colour
+        paper-dialog-background-color: '#fdf6e3'                                        # Card dialog background colour
+        paper-item-icon-color: 'var(--primary-text-color)'                              # Icon color
+        paper-item-icon-active-color: '#b58900'                                         # Icon color active
+        paper-item-icon_-_color: 'green'           
+        paper-item-selected_-_color: 'var(--accent-color)'
+        paper-item-selected_-_background-color: '#cb4b16'                               # Popup item select                      
+        paper-tabs-selection-bar-color: 'green'
+        
+        # Labels 
+        label-badge-red: '#586e75'                                                      # References the brand colour label badge border
+        label-badge-text-color: 'var(--primary-text-color)'                             # Now same as label badge border but that's a matter of taste
+        label-badge-background-color: 'var(--accent-color)'                             # Same, but can also be set to transparent here
+        
+        # Switches
+        paper-toggle-button-checked-button-color: '#268bd2'
+        paper-toggle-button-checked-bar-color: 'var(--primary-color)'
+        paper-toggle-button-checked-ink-color: '#268bd2'
+        paper-toggle-button-unchecked-button-color: 'var(--secondary-background-color)'
+        paper-toggle-button-unchecked-bar-color: 'var(--secondary-text-color)'
+        paper-toggle-button-unchecked-ink-color: 'var(--secondary-background-color)'  
+        
+        # Sliders
+        paper-slider-knob-color: 'var(--secondary-text-color)'
+        paper-slider-knob-start-color: 'var(--secondary-text-color)'
+        paper-slider-pin-color: 'var(--secondary-text-color)'
+        paper-slider-active-color: 'var(--secondary-text-color)'
+        paper-slider-container-color: 'linear-gradient(var(--primary-background-color), var(--secondary-background-color)) no-repeat'
+        paper-slider-secondary-color: 'var(--secondary-background-color)'
+        paper-slider-disabled-active-color: 'var(--disabled-text-color)'
+        paper-slider-disabled-secondary-color: 'var(--disabled-text-color)'
+        
+        # Google colors
+        google-red-500: '#dc322f'
+        google-green-500: '#859900'
+    solarized-dark:
+      primary-color: "#586e75"
+      accent-color: "#002b36"
+      dark-primary-color: "#93a1a1"
+      light-primary-color: "var(--accent-color)"
+      primary-text-color: "#839496"
+      text-primary-color: "var(--primary-text-color)"
+      secondary-text-color: "#586e75"
+      disabled-text-color: "#7F848E"
+      label-badge-border-color: "green"
+      primary-background-color: "#002b36"
+      secondary-background-color: "#073642"
+      divider-color: "rgba(0, 0, 0, .12)"
+      table-row-background-color: "#002b36"
+      table-row-alternative-background-color: "#073642"
+      paper-listbox-color: "var(--primary-color)"
+      paper-listbox-background-color: "var(--accent-color)"
       paper-grey-50: "var(--primary-text-color)"
-      paper-item-icon-active-color: "var(--primary-color)"
-      paper-item-icon_-_color: "var(--primary-text-color)"
-      paper-slider-active-color: "var(--primary-color)"
-      paper-slider-knob-color: "var(--primary-color)"
-      paper-slider-knob-start-color: "var(--primary-color)"
-      paper-slider-pin-color: "var(--primary-color)"
-      paper-slider-secondary-color: "var(--light-primary-color)"     
-      paper-toggle-button-checked-ink-color: "var(--dark-primary-color)"
-      paper-toggle-button-checked-button-color: "var(--primary-color)"
-      paper-toggle-button-checked-bar-color: "var(--light-primary-color)"
-      paper-toggle-button-unchecked-bar-color: "var(--primary-text-color)"
+      paper-grey-200: "var(--accent-color)"
+      paper-card-header-color: "var(--dark-primary-color)"
+      paper-card-background-color: "var(--accent-color)"
+      paper-dialog-background-color: "#002b36"
+      paper-item-icon-color: "var(--primary-text-color)"
+      paper-item-icon-active-color: "#b58900"
+      paper-item-icon_-_color: "#859900"
+      paper-item-selected_-_color: "var(--accent-color)"
+      paper-item-selected_-_background-color: "#cb4b16"
+      paper-tabs-selection-bar-color: "#859900"
+      label-badge-red: "#93a1a1"
+      label-badge-text-color: "var(--primary-text-color)"
+      label-badge-background-color: "var(--accent-color)"
+      paper-toggle-button-checked-button-color: "#268bd2"
+      paper-toggle-button-checked-bar-color: "var(--primary-color)"
+      paper-toggle-button-checked-ink-color: "#268bd2"
+      paper-toggle-button-unchecked-button-color: "var(--secondary-background-color)"
+      paper-toggle-button-unchecked-bar-color: "var(--secondary-text-color)"
+      paper-toggle-button-unchecked-ink-color: "var(--secondary-background-color)"
+      paper-slider-knob-color: "var(--secondary-text-color)"
+      paper-slider-knob-start-color: "var(--secondary-text-color)"
+      paper-slider-pin-color: "var(--secondary-text-color)"
+      paper-slider-active-color: "var(--secondary-text-color)"
+      paper-slider-container-color: "linear-gradient(var(--primary-background-color), var(--secondary-background-color)) no-repeat"
+      paper-slider-secondary-color: "var(--secondary-background-color)"
+      paper-slider-disabled-active-color: "var(--disabled-text-color)"
+      paper-slider-disabled-secondary-color: "var(--disabled-text-color)"
+      sidebar-selected-icon-color: 'var(--secondary-text-color)'
+      sidebar-icon-color: 'var(--primary-text-color)'
+      google-red-500: "#dc322f"
+      google-green-500: "#859900"
 
 # Enables configuration UI
 config:
+
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: https://www.glousher.com:3218
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 # http:

@@ -1,18 +1,15 @@
 title: Estates
 views:
-  - id: overview  # Automatically created id
+  - id: overview
     title: Home Overview
     icon: mdi:home
     cards:
-      - id: 961aa9b141b742558751a72d13f33864  # Automatically created id
-        type: weather-forecast
+      - type: weather-forecast
         entity: weather.weather
-      - id: d6ce7657e6a24af89470fea37c5ce8ee  # Automatically created id
-        type: plant-status
+      - type: plant-status
         entity: plant.window
-      - id: 8f5df9b0db7d465a8dd6319660e876cd  # Automatically created id
-        type: entities
-        title: all lights
+      - type: entities
+        title: Room Lights
         show_header_toggle: true
         entities:
           - light.bedroom
@@ -20,15 +17,13 @@ views:
           - light.garage
           - light.kitchen
           - light.living_room
-# Automatically created id
       - type: entities
-        title: all switches
+        title: Devices
         show_header_toggle: false
         entities:
           - switch.bugzapper
           - switch.thunder
-      - id: 194a0c25bf234ad0adfa7b4e5825a632  # Automatically created id
-        type: media-control
+      - type: media-control
         entity: media_player.tv
   - id: lights
     title: All Lights
@@ -53,14 +48,12 @@ views:
       - id:
         type: thermostat
         entity: climate.tesla_model_3_5yj3e1ea8hf000718_hvac_climate_system
-      - id: 94a140513bf5430db35832e934828c15  # Automatically created id
-        type: entities
+      - type: entities
         title: all locks
         show_header_toggle: true
         entities:
           - lock.tesla_model_3_5yj3e1ea8hf000718_door_lock
-      - id: 
-        type: entities
+      - type: entities
         title: all switches
         show_header_toggle: false
         entities:
@@ -76,14 +69,12 @@ views:
     title: System
     icon: mdi:server
     cards:
-      - id: 2ba63662d88a4c48b5cd846e9b81b8bf  # Automatically created id
-        type: entities
+      - type: entities
         title: all scripts
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - script.1539135661190
-      - id: 390b7eaf807646e885d38aa1b2035a99  # Automatically created id
-        type: entities
+      - type: entities
         title: all automations
         show_header_toggle: false
         entities:

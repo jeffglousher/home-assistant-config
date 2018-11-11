@@ -72,6 +72,9 @@
   - data:
       entity_id: switch.bugzapper
     service: switch.turn_off
+  - data:
+      name: solarized-light
+    service: frontend.set_theme
 - id: '1538743708457'
   alias: Do at Sunset
   trigger:
@@ -82,6 +85,9 @@
   - data:
       entity_id: switch.bugzapper
     service: switch.turn_on
+  - data:
+      name: solarized-dark
+    service: frontend.set_theme
 - id: '1538746855607'
   alias: Warning for Upcoming SSL Expirey
   trigger:
