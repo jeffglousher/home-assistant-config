@@ -89,7 +89,7 @@
       name: solarized-dark
     service: frontend.set_theme
 - id: '1538746855607'
-  alias: Warning for Upcoming SSL Expirey
+  alias: Warning for Upcoming SSL Expiry
   trigger:
   - below: '10'
     entity_id: sensor.ssl_certificate_expiry
@@ -172,3 +172,21 @@
   - data:
       entity_id: switch.tesla_model_3_5yj3e1ea8hf000718_charger_switch
     service: switch.turn_off
+- id: '1542042353145'
+  alias: Notify when Rovers is not at home and start charging
+  trigger:
+  - entity_id: binary_sensor.tesla_model_3_5yj3e1ea8hf000718_charger_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: group.rover
+    state: not_home
+  action:
+  - data:
+      data:
+        url: https://www.glousher.com:8123/lovelace/rover
+      message: It looks like rover is not at home and just started charging
+      title: Rover Charging Started
+    service: notify.notify_jeffs_raster

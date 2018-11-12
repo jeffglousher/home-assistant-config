@@ -87,6 +87,7 @@ views:
           - automation.home_assistant_shutdown
           - automation.home_assistant_start
           - automation.set_gold_lamp_to_relax_when_soil_moisture_is_ok
-          - automation.stop_charging_rover
+          - automation.stop_charging_rover_on_a_weekendholiday
+          - automation.stop_charging_rover_on_a_workday
           - automation.turn_gold_lamp_blue_when_soil_moisture_is_low
-          - automation.warning_for_upcoming_ssl_expirey
+          - automation.warning_for_upcoming_ssl_expiry
