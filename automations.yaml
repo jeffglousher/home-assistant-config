@@ -34,7 +34,7 @@
       entity_id: switch.teslacharger
     service: switch.turn_off
 - id: '1538719850300'
-  alias: Turn Gold Lamp Blue When Soil Moisture is Low
+  alias: Soil Moisture is Low
   trigger:
   - below: '15'
     entity_id: sensor.moisture
@@ -46,6 +46,13 @@
       color_name: blue
       entity_id: light.gold_lamp
     service: light.turn_on
+  - data:
+      data:
+        url: https://www.glousher.com:8123/lovelace/overview
+      message: 'The moisture level is currently: {{ states.sensor.moisture.state_with_unit
+        }}'
+      title: The Plant is Thirsty!
+    service: notify.notify
 - id: '1538720130028'
   alias: Set Gold Lamp to Relax when Soil Moisture is OK
   trigger:
@@ -190,3 +197,15 @@
       message: It looks like rover is not at home and just started charging
       title: Rover Charging Started
     service: notify.notify_jeffs_raster
+- id: '1542582264688'
+  alias: Do a bit after Sunrise
+  trigger:
+  - event: sunrise
+    offset: +02:00:00
+    platform: sun
+  condition: []
+  action:
+  - alias: ''
+    data:
+      name: default
+    service: frontend.set_theme

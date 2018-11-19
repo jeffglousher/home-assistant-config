@@ -1,48 +1,38 @@
 homeassistant:
-  # Name of the location where Home Assistant is running
-  name: Home
-  # Location required to calculate the time the sun rises and sets
-  latitude: 37.545253
+  name: Home # Name of the location where Home Assistant is running
+  latitude: 37.545253 # Location required to calculate the time the sun rises and sets
   longitude: -121.972196
-  #radius: 50
-  # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 17
-  # metric for Metric, imperial for Imperial
-  unit_system: metric
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: America/Los_Angeles
-  # Customization file
-  customize: !include customize.yaml
-  
+  elevation: 17 # Impacts weather/sunrise data (altitude above sea level in meters)
+  unit_system: metric # metric for Metric, imperial for Imperial
+  time_zone: America/Los_Angeles # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  customize: !include customize.yaml # Customization file, not sure why this is formatted differently from below
+
 zone:
   - name: Home
     latitude: 37.545253
     longitude: -121.972196
     radius: 50
-  - name: Estates
+  - name: Estates #
     latitude: 37.5465142
     longitude: -121.9718834
-    radius: 150
+    radius: 200
 
-recorder:
+recorder: # configure the connection to the external mySQL database, running as a docker container on a different host
   db_url: !secret db_url
   purge_keep_days: 365
   
-# configure the connection to the TICK stack
-influxdb:
+influxdb: # configure the connection to the TICK stack, running as a docker container on a different host
   host: 192.168.1.51
   database: homeassistant
   username: !secret influxdb_user
   password: !secret influxdb_password
-# Show links to resources in log and frontend
-#introduction:
 
-media_player:
+media_player: # configure basic control on the TV, unfortunatly it anly allows for power OFF (no power ON supported)
   - platform: samsungtv
     name: TV
     host: 192.168.1.30
-# 
-mqtt:
+
+mqtt: # Configure LAN accessible MQTT server, running as a docker container on a different host
   broker: 192.168.1.51
   discovery: true
   discovery_prefix: homeassistant_autogen
@@ -57,8 +47,7 @@ mqtt:
     qos: 1
     retain: true
 
-# Enables the frontend
-frontend:
+frontend: # Enables the frontend, all this work would be silly without it (there are no other instances of HassOS)
   themes:
     solarized-light:
         # Main colors
@@ -66,30 +55,24 @@ frontend:
         accent-color: '#fdf6e3'                                                         # Accent color
         dark-primary-color: '#586e75'                                                   # Hyperlinks                                         
         light-primary-color: 'var(--accent-color)'                                      # Horizontal line in about
-                                                                                    
         # Text colors                                                                  
         primary-text-color: '#657b83'                                                   # Primary text colour, here is referencing dark-primary-color
         text-primary-color: 'var(--primary-text-color)'                                 # Primary text colour
         secondary-text-color: '#93a1a1'                                                 # For secondary titles in more info boxes etc.
         disabled-text-color: '#7F848E'                                                  # Disabled text colour
         label-badge-border-color: 'green'                                               # Label badge border, just a reference value   
-        
         # Background colors                                                            
         primary-background-color: '#fdf6e3'                                             # Settings background
         secondary-background-color: '#eee8d5'                                           # Main card UI background  
-        divider-color: 'rgba(0, 0, 0, .12)'                                             # Divider 
-          
-        
+        divider-color: 'rgba(0, 0, 0, .12)'                                             # Dividers
         # Table rows                                                                   
         table-row-background-color: '#fdf6e3'                                           # Table row
         table-row-alternative-background-color: '#eee8d5'                               # Table row alternative
-                                                                                    
         # Nav Menu                                                                   
         paper-listbox-color: 'var(--primary-color)'                                     # Navigation menu selection hoover
         paper-listbox-background-color: 'var(--accent-color)'                           # Navigation menu background
         paper-grey-50: 'var(--primary-text-color)'                                   
         paper-grey-200: 'var(--accent-color)'                                           # Navigation menu selection
-                                                                                    
         # Paper card                                                               
         paper-card-header-color: 'var(--dark-primary-color)'                            # Card header text colour
         paper-card-background-color: 'var(--accent-color)'                              # Card background colour
@@ -100,12 +83,10 @@ frontend:
         paper-item-selected_-_color: 'var(--accent-color)'
         paper-item-selected_-_background-color: '#cb4b16'                               # Popup item select                      
         paper-tabs-selection-bar-color: 'green'
-        
         # Labels 
         label-badge-red: '#586e75'                                                      # References the brand colour label badge border
         label-badge-text-color: 'var(--primary-text-color)'                             # Now same as label badge border but that's a matter of taste
         label-badge-background-color: 'var(--accent-color)'                             # Same, but can also be set to transparent here
-        
         # Switches
         paper-toggle-button-checked-button-color: '#268bd2'
         paper-toggle-button-checked-bar-color: 'var(--primary-color)'
@@ -113,7 +94,6 @@ frontend:
         paper-toggle-button-unchecked-button-color: 'var(--secondary-background-color)'
         paper-toggle-button-unchecked-bar-color: 'var(--secondary-text-color)'
         paper-toggle-button-unchecked-ink-color: 'var(--secondary-background-color)'  
-        
         # Sliders
         paper-slider-knob-color: 'var(--secondary-text-color)'
         paper-slider-knob-start-color: 'var(--secondary-text-color)'
@@ -123,10 +103,10 @@ frontend:
         paper-slider-secondary-color: 'var(--secondary-background-color)'
         paper-slider-disabled-active-color: 'var(--disabled-text-color)'
         paper-slider-disabled-secondary-color: 'var(--disabled-text-color)'
-        
         # Google colors
         google-red-500: '#dc322f'
         google-green-500: '#859900'
+        
     solarized-dark:
       primary-color: "#586e75"
       accent-color: "#002b36"
@@ -177,39 +157,20 @@ frontend:
       google-red-500: "#dc322f"
       google-green-500: "#859900"
 
-# Enables configuration UI
-config:
+config: # Enables configuration UI
 
-panel_iframe:
-  configurator:
-    title: Configurator
-    icon: mdi:wrench
-    url: https://www.glousher.com:3218
-
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   base_url: example.duckdns.org:8123
-http:
+http: # Configure url path, this is a Google Domains domain with the needed firewall settings at the NAT (OPNsense)
   base_url: https:/www.glousher.com:8123
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
 
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
+updater: # Optional, allows Home Assistant developers to focus on popular components. https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+  include_used_components: true
 
 # Discover some devices automatically
 discovery:
-  ignore:
-    - netgear_router
     
-# Allows you to issue voice commands from the frontend in enabled browsers
-conversation:
+conversation: # Allows you to issue voice commands from the frontend in enabled browsers
 
 # Enables support for tracking state changes over time
 history:
@@ -225,10 +186,10 @@ sun:
 
 weather:
   - platform: darksky
-    api_key: 3f8b7644e574246d5e043a5c699219ee
+    api_key: !secret darksky_api_key
     name: Weather
-# Tesla car tracking
-tesla:
+
+tesla: # Tesla car tracking
   username: !secret tesla_user
   password: !secret tesla_password
 
@@ -257,7 +218,7 @@ binary_sensor:
 sensor:
   - platform: darksky
     name: Weather
-    api_key: 3f8b7644e574246d5e043a5c699219ee
+    api_key: !secret darksky_api_key
     monitored_conditions:
       - summary
       - icon
@@ -339,13 +300,10 @@ plant:
  window:
    sensors:
      moisture: sensor.moisture
-#      battery: sensor.my_sensor_battery
      temperature: sensor.temperature
-#      conductivity: sensor.my_sensor_conductivity
-#      brightness: sensor.my_sensor_brightnes
+#      brightness: sensor.my_sensor_brightnes ## finish the Pi programming!!!
      
-     
-device_tracker:
+device_tracker: # tracking also inlcudes Tesla which is not shown here
   - platform: nmap_tracker
     hosts:
     - 192.168.1.31
@@ -355,18 +313,17 @@ device_tracker:
     username: !secret google_user_gh
     password: !secret google_password_gh
     track_new_devices: true
-# Text to speech
-tts:
+
+tts: # Text to speech
   - platform: google
   
 notify:
   - platform: html5
     name: notify
-    gcm_api_key: 'AAAAFQmbRdg:APA91bEFUyObCtGT-C4602ZOfYFAFDN-_SanFBesqYG_ZILiKV_d0mQvSZN2rwHSGwWAUHaXiOng92SyEgK-TW-jIGZBjkPbFlLLP-yBDlCgJLzmfi0kA8okCgVpHlo0O9t1DfZI0J6B'
-    gcm_sender_id: '90355484120'
-    
-# Cloud
-cloud:
+    gcm_api_key: !secret gcm_api
+    gcm_sender_id: !secret gcm_sender
+
+cloud: # Cloud???
 
 group: !include groups.yaml
 automation: !include automations.yaml
