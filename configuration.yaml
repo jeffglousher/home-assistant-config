@@ -244,24 +244,6 @@ sensor:
       - precip_intensity_max
       - uv_index
       - moon_phase
-  - platform: template
-    sensors:
-      rover_home_away:
-        friendly_name: Rover
-        value_template: >-
-          {% if is_state('group.rover', 'home') %}
-            Home
-          {% elif states.device_tracker.tesla_model_3_5yj3e1ea8hf000718_location_tracker.state != 'not_home' %}
-            {{ states.device_tracker.tesla_model_3_5yj3e1ea8hf000718_location_tracker.state }}
-          {% else %}
-            Away
-          {% endif %}
-        icon_template: >-
-          {% if is_state('group.rover', 'home') %}
-            mdi:account
-          {% else %}
-            mdi:account-outline
-          {% endif %}
 
   - platform: cert_expiry
     host: www.glousher.com
@@ -277,7 +259,6 @@ sensor:
         arg: /home
       - type: memory_free
       - type: memory_use_percent
-      - type: swap_use_percent
       - type: load_1m
       - type: network_in
         arg: 'enp2s1'

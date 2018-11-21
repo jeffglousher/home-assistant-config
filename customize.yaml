@@ -2,3 +2,6 @@ plant.window:
   friendly_name: Window Plant
 climate.tesla_model_3_5yj3e1ea8hf000718_hvac_climate_system:
   friendly_name: Rover HVAC
+sensor.tesla_model_3_5yj3e1ea8hf000718_battery_sensor:
+  friendly_name: Battery
+  icon: mdi:car-battery

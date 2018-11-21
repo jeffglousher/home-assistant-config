@@ -1,16 +1,5 @@
 title: Estates
-# Exclude entities from "Unused entities" view
-excluded_entities:
-  - group.all_automations
-  - group.all_devices
-  - group.all_lights
-  - group.all_locks
-  - group.all_plants
-  - group.all_scripts
-  - group.all_switches
-  - light.entertainment_area_1
 views:
-
   - id: overview
     title: Home Overview
     icon: mdi:home
@@ -36,7 +25,6 @@ views:
           - switch.thunder
       - type: media-control
         entity: media_player.tv
-
   - id: lights
     title: All Lights
     icon: mdi:lightbulb
@@ -53,7 +41,6 @@ views:
         card: 
           type: glance
           title: Lights that are On
-
   - id: rover
     title: Rover
     icon: mdi:car
@@ -78,7 +65,6 @@ views:
         name: Battery
         height: 75
         line_color: "#3498db"
-
   - id: system
     title: System
     icon: mdi:server
@@ -103,5 +89,5 @@ views:
           - automation.set_gold_lamp_to_relax_when_soil_moisture_is_ok
           - automation.stop_charging_rover_on_a_weekendholiday
           - automation.stop_charging_rover_on_a_workday
-          - automation.soil_moisture_is_low
+          - automation.turn_gold_lamp_blue_when_soil_moisture_is_low
           - automation.warning_for_upcoming_ssl_expiry
