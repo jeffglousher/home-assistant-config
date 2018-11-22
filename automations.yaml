@@ -22,6 +22,9 @@
   - data:
       entity_id: switch.teslacharger
     service: switch.turn_on
+  - data:
+      entity_id: light.garage
+    service: light.turn_on
 - id: '1538717746774'
   alias: Disable Outlet when Rover leaves Home
   trigger:

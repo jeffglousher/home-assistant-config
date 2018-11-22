@@ -1,5 +1,20 @@
 title: Estates
+# Exclude entities from "Unused entities" view
+excluded_entities:
+  - group.all_automations
+  - group.all_devices
+  - group.all_lights
+  - group.all_locks
+  - group.all_plants
+  - group.all_scripts
+  - group.all_switches
+  - light.entertainment_area_1
+  - device_tracker.tesla_model_3_5yj3e1ea8hf000718_location_tracker
+  - device_tracker.b4e62ae90d29
+  - device_tracker.404e36902186
+  - device_tracker.android957114c2e834a0d6gloushercom
 views:
+
   - id: overview
     title: Home Overview
     icon: mdi:home
@@ -25,6 +40,7 @@ views:
           - switch.thunder
       - type: media-control
         entity: media_player.tv
+
   - id: lights
     title: All Lights
     icon: mdi:lightbulb
@@ -41,30 +57,59 @@ views:
         card: 
           type: glance
           title: Lights that are On
+
   - id: rover
     title: Rover
     icon: mdi:car
     cards:
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            title: "Charge Level"
+            entity: sensor.tesla_model_3_5yj3e1ea8hf000718_battery_sensor
+            severity:
+              green: 20
+              yellow: 0
+              red: 90
+          - type: glance
+            entities:
+              - sensor.tesla_model_3_5yj3e1ea8hf000718_range_sensor
       - id:
-        type: thermostat
-        entity: climate.tesla_model_3_5yj3e1ea8hf000718_hvac_climate_system
-      - type: entities
-        title: all locks
-        show_header_toggle: true
+        type: entities
+        entities: 
+          - climate.tesla_model_3_5yj3e1ea8hf000718_hvac_climate_system
+      - type: history-graph
+        title: 'Car Temperature'
         entities:
-          - lock.tesla_model_3_5yj3e1ea8hf000718_door_lock
+          - entity: sensor.tesla_model_3_5yj3e1ea8hf000718_temperature_sensor_inside
+            name: Inside
+          - entity: sensor.tesla_model_3_5yj3e1ea8hf000718_temperature_sensor_outside
+            name: Outside
       - type: entities
-        title: all switches
+        show_header_toggle: false
+        entities:
+          - binary_sensor.tesla_model_3_5yj3e1ea8hf000718_charger_sensor
+          - binary_sensor.tesla_model_3_5yj3e1ea8hf000718_parking_brake_sensor
+          - sensor.tesla_model_3_5yj3e1ea8hf000718_mileage_sensor
+          - group.rover
+          - sensor.charger_watts
+      - type: history-graph
+        title: 'Car Energy'
+        hours_to_show: 168
+        entities:
+          - entity: sensor.tesla_model_3_5yj3e1ea8hf000718_battery_sensor
+            name: Battery Level
+      - type: entities
+        title: Charger Control
         show_header_toggle: false
         entities:
           - switch.tesla_model_3_5yj3e1ea8hf000718_charger_switch
           - switch.tesla_model_3_5yj3e1ea8hf000718_maxrange_switch
           - switch.teslacharger
-      - type: sensor
-        entity: sensor.tesla_model_3_5yj3e1ea8hf000718_battery_sensor
-        name: Battery
-        height: 75
-        line_color: "#3498db"
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - lock.tesla_model_3_5yj3e1ea8hf000718_door_lock
   - id: system
     title: System
     icon: mdi:server
@@ -89,5 +134,7 @@ views:
           - automation.set_gold_lamp_to_relax_when_soil_moisture_is_ok
           - automation.stop_charging_rover_on_a_weekendholiday
           - automation.stop_charging_rover_on_a_workday
-          - automation.turn_gold_lamp_blue_when_soil_moisture_is_low
+          - automation.soil_moisture_is_low
           - automation.warning_for_upcoming_ssl_expiry
+          - automation.do_a_bit_after_sunrise
+          - automation.notify_when_rovers_is_not_at_home_and_start_charging

@@ -271,9 +271,8 @@ sensor:
 # Tesla - Rover charger power tracking
   - platform: template
     sensors:
-      tesla_watts:
-        friendly_name: "Tesla Charging Power"
-        #icon: mdi:car-battery
+      charger_watts:
+        friendly_name: "Home Charger Power"
         unit_of_measurement: "w"
         value_template: '{% if states.switch.teslacharger %}{{ states.switch.teslacharger.attributes.current_power_w }}{% else %}Off{% endif %}'
      
