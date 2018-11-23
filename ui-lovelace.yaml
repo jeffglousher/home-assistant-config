@@ -21,8 +21,6 @@ views:
     cards:
       - type: weather-forecast
         entity: weather.weather
-      - type: plant-status
-        entity: plant.window
       - type: entities
         title: Room Lights
         show_header_toggle: true
@@ -32,6 +30,8 @@ views:
           - light.garage
           - light.kitchen
           - light.living_room
+      - type: plant-status
+        entity: plant.window
       - type: entities
         title: Devices
         show_header_toggle: false
@@ -57,7 +57,55 @@ views:
         card: 
           type: glance
           title: Lights that are On
-
+      - type: horizontal-stack
+        cards:
+        - type: vertical-stack
+          cards:
+          -   type: entity-button
+              entity: light.dining
+          -   type: glance
+              entities: 
+                - light.hue_ambiance_spot_1
+          -   type: glance
+              entities: 
+                - light.hue_ambiance_spot_2
+          -   type: glance
+              entities: 
+                - light.hue_ambiance_spot_3
+        - type: vertical-stack
+          cards:
+          -   type: entity-button
+              entity: light.living_room
+          -   type: glance
+              entities: 
+                - light.gold_lamp
+          -   type: glance
+              entities: 
+                - light.crystal_lamp
+        - type: vertical-stack
+          cards:
+          -   type: entity-button
+              entity: light.bedroom
+          -   type: glance
+              entities: 
+                - light.tall_lamp
+          -   type: glance
+              entities: 
+                - light.reading_lamp
+        - type: vertical-stack
+          cards:
+          -   type: entity-button
+              entity: light.kitchen
+          -   type: glance
+              entities: 
+                - light.sink_lightstrip
+        - type: vertical-stack
+          cards:
+          -   type: entity-button
+              entity: light.garage
+          -   type: glance
+              entities: 
+                - light.hue_color_downlight_1
   - id: rover
     title: Rover
     icon: mdi:car
@@ -114,15 +162,37 @@ views:
     title: System
     icon: mdi:server
     cards:
+      - type: markdown
+        title: 'System Links'
+        content: > 
+          - [Documentation](https://github.com/jeffglousher)
+          
+          - [Hass Configurator](https://www.glousher.com:3218/)
+          
+          - [Router](http://192.168.1.1) *LAN/VPN Access Only!*
+          
+          - [Netgear Orbi - Master](http://192.168.1.2) *LAN/VPN Access Only!*
+          
+          - [Netgear Orbi - Satellite](http://192.168.1.3) *LAN/VPN Access Only!*
+          
+          - [Portainer](http://192.168.1.51:9000/) *LAN/VPN Access Only!*
+          
+          - [PlantUML](http://192.168.1.51:8080) *LAN/VPN Access Only!*
+          
+          - [Chronograf](http://192.168.1.51:8888) *LAN/VPN Access Only!*
+          
+          - [ESXi](https://192.168.1.50/) *LAN/VPN Access Only!*
+    
       - type: entities
-        title: all scripts
+        title: Scripts
         show_header_toggle: false
         entities:
           - script.1539135661190
       - type: entities
-        title: all automations
+        title: Automations
         show_header_toggle: false
         entities:
+          - automation.turn_garage_light_off_again
           - automation.daily_lets_encrypt_renewal
           - automation.disable_outlet_when_rover_leaves_home
           - automation.do_at_sunrise
