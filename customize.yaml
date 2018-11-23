@@ -48,3 +48,15 @@ sensor.tesla_model_3_5yj3e1ea8hf000718_mileage_sensor:
 sensor.tesla_model_3_5yj3e1ea8hf000718_range_sensor:
   friendly_name: Estimated Range
   icon: mdi:road
+light.hue_ambiance_spot_1:
+  friendly_name: Spot 1
+light.hue_ambiance_spot_2:
+  friendly_name: Spot 2
+light.hue_ambiance_spot_3:
+  friendly_name: Spot 3
+light.sink_lightstrip:
+  friendly_name: Lightstrip
+light.hue_color_downlight_1:
+  friendly_name: Lamp
+sensor.humidity:
+  friendly_name: Indoor Humidity

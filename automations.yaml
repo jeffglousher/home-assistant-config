@@ -212,3 +212,15 @@
     data:
       name: default
     service: frontend.set_theme
+- id: '1542882910962'
+  alias: Turn garage light off again
+  trigger:
+  - entity_id: light.garage
+    for: 00:10:00
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: light.garage
+    service: light.turn_off

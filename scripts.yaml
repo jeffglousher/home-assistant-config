@@ -1,4 +1,4 @@
-'1539135661190':
+'notify_jeff_with_feedback':
   alias: Notify Jeff
   sequence:
   - data:
@@ -11,13 +11,3 @@
           title: Open door
       message: Jeff has arrived home
     service: notify.notify_jeffs_raster
-'1541042911248':
-  alias: Notify Mary Frances
-  sequence:
-  - data:
-      data:
-        url: https://www.glousher.com:8123
-      message: Please feed me water as soon as possible! I'm wilting and I can't get
-        up again...      -Leaf an impression
-      title: The Plant is Hungry!
-    service: notify.notify_mary_frances

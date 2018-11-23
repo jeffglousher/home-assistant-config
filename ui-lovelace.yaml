@@ -62,6 +62,16 @@ views:
         - type: vertical-stack
           cards:
           -   type: entity-button
+              entity: light.living_room
+          -   type: glance
+              entities: 
+                - light.gold_lamp
+          -   type: glance
+              entities: 
+                - light.crystal_lamp
+        - type: vertical-stack
+          cards:
+          -   type: entity-button
               entity: light.dining
           -   type: glance
               entities: 
@@ -72,16 +82,6 @@ views:
           -   type: glance
               entities: 
                 - light.hue_ambiance_spot_3
-        - type: vertical-stack
-          cards:
-          -   type: entity-button
-              entity: light.living_room
-          -   type: glance
-              entities: 
-                - light.gold_lamp
-          -   type: glance
-              entities: 
-                - light.crystal_lamp
         - type: vertical-stack
           cards:
           -   type: entity-button
@@ -158,6 +158,26 @@ views:
         show_header_toggle: false
         entities:
           - lock.tesla_model_3_5yj3e1ea8hf000718_door_lock
+  - id: weather
+    title: Weather
+    icon: mdi:weather-cloudy
+    cards:
+      - type: glance
+        entities:
+          - sensor.weather_temperature
+          - sensor.weather_summary
+          - sun.sun
+          - sensor.moon
+      - type: history-graph
+        entities: 
+          - sensor.weather_dew_point
+          - sensor.weather_temperature
+          - sensor.weather_apparent_temperature
+          - sensor.weather_overnight_low_temperature
+          - sensor.weather_overnight_low_apparent_temperature
+          - sensor.weather_daytime_high_temperature
+          - sensor.weather_daytime_high_apparent_temperature
+          
   - id: system
     title: System
     icon: mdi:server
@@ -187,7 +207,7 @@ views:
         title: Scripts
         show_header_toggle: false
         entities:
-          - script.1539135661190
+          - script.notify_jeff_with_feedback
       - type: entities
         title: Automations
         show_header_toggle: false
