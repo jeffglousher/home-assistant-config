@@ -13,6 +13,16 @@ excluded_entities:
   - device_tracker.b4e62ae90d29
   - device_tracker.404e36902186
   - device_tracker.android957114c2e834a0d6gloushercom
+  - sensor.temperature
+  - sensor.moisture
+  - sensor.weather_icon
+  - sensor.freebsd_router_bytes_received
+  - sensor.freebsd_router_packets_received
+  - sensor.freebsd_router_bytes_sent
+  - sensor.freebsd_router_packets_sent
+resources:
+  - url: /local/toggle-lock-entity-row.js
+    type: js
 views:
 
   - id: overview
@@ -23,21 +33,28 @@ views:
         entity: weather.weather
       - type: entities
         title: Room Lights
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
-          - light.bedroom
-          - light.dining
-          - light.garage
-          - light.kitchen
-          - light.living_room
+          - entity: light.bedroom
+            type: custom:toggle-lock-entity-row
+          - entity: light.dining
+            type: custom:toggle-lock-entity-row
+          - entity: light.garage
+            type: custom:toggle-lock-entity-row
+          - entity: light.kitchen
+            type: custom:toggle-lock-entity-row
+          - entity: light.living_room
+            type: custom:toggle-lock-entity-row
       - type: plant-status
         entity: plant.window
       - type: entities
         title: Devices
         show_header_toggle: false
         entities:
-          - switch.bugzapper
-          - switch.thunder
+          - entity: switch.bugzapper
+            type: custom:toggle-lock-entity-row
+          - entity: switch.thunder
+            type: custom:toggle-lock-entity-row
       - type: media-control
         entity: media_player.tv
 
@@ -106,6 +123,11 @@ views:
           -   type: glance
               entities: 
                 - light.hue_color_downlight_1
+      - type: entities
+        entities:
+          - entity: switch.flux
+            name: Home Flux light:sun tracking
+            type: custom:toggle-lock-entity-row
   - id: rover
     title: Rover
     icon: mdi:car
@@ -127,22 +149,20 @@ views:
         entities: 
           - climate.tesla_model_3_5yj3e1ea8hf000718_hvac_climate_system
       - type: history-graph
-        title: 'Car Temperature'
         entities:
           - entity: sensor.tesla_model_3_5yj3e1ea8hf000718_temperature_sensor_inside
-            name: Inside
+            name: Inside Temperature
           - entity: sensor.tesla_model_3_5yj3e1ea8hf000718_temperature_sensor_outside
-            name: Outside
+            name: Outside Temperature
       - type: entities
         show_header_toggle: false
         entities:
-          - binary_sensor.tesla_model_3_5yj3e1ea8hf000718_charger_sensor
+          - group.rover
           - binary_sensor.tesla_model_3_5yj3e1ea8hf000718_parking_brake_sensor
           - sensor.tesla_model_3_5yj3e1ea8hf000718_mileage_sensor
-          - group.rover
+          - binary_sensor.tesla_model_3_5yj3e1ea8hf000718_charger_sensor
           - sensor.charger_watts
       - type: history-graph
-        title: 'Car Energy'
         hours_to_show: 168
         entities:
           - entity: sensor.tesla_model_3_5yj3e1ea8hf000718_battery_sensor
@@ -151,9 +171,12 @@ views:
         title: Charger Control
         show_header_toggle: false
         entities:
-          - switch.tesla_model_3_5yj3e1ea8hf000718_charger_switch
-          - switch.tesla_model_3_5yj3e1ea8hf000718_maxrange_switch
-          - switch.teslacharger
+          - entity: switch.tesla_model_3_5yj3e1ea8hf000718_charger_switch
+            type: custom:toggle-lock-entity-row
+          - entity: switch.tesla_model_3_5yj3e1ea8hf000718_maxrange_switch
+            type: custom:toggle-lock-entity-row
+          - entity: switch.teslacharger
+            type: custom:toggle-lock-entity-row
       - type: entities
         show_header_toggle: false
         entities:
@@ -170,18 +193,69 @@ views:
           - sensor.moon
       - type: history-graph
         entities: 
-          - sensor.weather_dew_point
-          - sensor.weather_temperature
-          - sensor.weather_apparent_temperature
-          - sensor.weather_overnight_low_temperature
-          - sensor.weather_overnight_low_apparent_temperature
-          - sensor.weather_daytime_high_temperature
-          - sensor.weather_daytime_high_apparent_temperature
-          
+          - entity: sensor.weather_dew_point
+            name: Dew point
+          - entity: sensor.weather_temperature
+            name: Temperature
+          - entity: sensor.weather_apparent_temperature
+            name: Apparent temperature
+          - entity: sensor.weather_overnight_low_temperature
+            name: Overnight low
+          - entity: sensor.weather_overnight_low_apparent_temperature
+            name: Overnight apparent low
+          - entity: sensor.weather_daytime_high_temperature
+            name: Daytime high
+          - entity: sensor.weather_daytime_high_apparent_temperature
+            name: Daytime apparent high
+          - entity: sensor.weather_humidity
+            name: Humidity
+          - entity: sensor.weather_precip_probability
+            name: Precipitation probability
+          - entity: sensor.weather_cloud_coverage
+            name: Cloud coverag
+          - entity: sensor.humidity
+            name: Indoor humidity
+      - type: glance
+        entities:
+          - sensor.weather_daily_max_precip_intensity
+          - sensor.weather_moon_phase
+          - sensor.weather_nearest_storm_distance
+          - sensor.weather_precip_intensity
+          - sensor.weather_ozone
+          - sensor.weather_uv_index
+          - sensor.weather_precip
+          - sensor.weather_precip_accumulation
+          - sensor.weather_pressure
+          - sensor.weather_visibility
+          - sensor.weather_wind_bearing
+          - sensor.weather_wind_speed
+      - type: weather-forecast
+        entity: weather.weather
   - id: system
     title: System
     icon: mdi:server
     cards:
+      - type: glance
+        entities:
+          - binary_sensor.workday_sensor
+          - sensor.disk_free_home
+          - sensor.disk_use_percent_home
+          - sensor.ssl_certificate_expiry
+          - sensor.load_1m
+          - sensor.uptime
+          - sensor.memory_free
+          - sensor.network_in_enp2s1
+          - sensor.network_out_enp2s1
+      - type: history-graph
+        hours_to_show: 48
+        entities:
+          - entity: sensor.freebsd_router_kbytesec_sent
+          - entity: sensor.freebsd_router_kbytesec_received
+          - entity: sensor.freebsd_router_packetssec_sent
+          - entity: sensor.freebsd_router_packetssec_received
+          - entity: sensor.memory_use_percent
+          - entity: sensor.processor_use
+          
       - type: markdown
         title: 'System Links'
         content: > 
