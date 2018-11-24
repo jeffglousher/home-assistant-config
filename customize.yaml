@@ -31,6 +31,7 @@ binary_sensor.tesla_model_3_5yj3e1ea8hf000718_parking_brake_sensor:
   friendly_name: Parking Brake
   icon: mdi:parking
 binary_sensor.workday_sensor:
+  friendly_name: Workday
   icon: mdi:calendar
 group.jeff:
   icon: mdi:human-male
@@ -60,3 +61,11 @@ light.hue_color_downlight_1:
   friendly_name: Lamp
 sensor.humidity:
   friendly_name: Indoor Humidity
+sensor.disk_free_home:
+  friendly_name: Disk free
+sensor.ssl_certificate_expiry:
+  friendly_name: SSL Expiry
+sensor.network_in_enp2s1:
+  friendly_name: Network in
+sensor.network_out_enp2s1:
+  friendly_name: Network out

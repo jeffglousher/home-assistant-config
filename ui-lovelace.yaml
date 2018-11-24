@@ -23,6 +23,8 @@ excluded_entities:
 resources:
   - url: /local/toggle-lock-entity-row.js
     type: js
+  - url: /local/custom_ui/weather-card.js
+    type: js
 views:
 
   - id: overview
@@ -231,6 +233,9 @@ views:
           - sensor.weather_wind_speed
       - type: weather-forecast
         entity: weather.weather
+      - type: "custom:weather-card"
+        entity_weather: weather.weather
+        entity_sun: sun.sun
   - id: system
     title: System
     icon: mdi:server
@@ -239,7 +244,6 @@ views:
         entities:
           - binary_sensor.workday_sensor
           - sensor.disk_free_home
-          - sensor.disk_use_percent_home
           - sensor.ssl_certificate_expiry
           - sensor.load_1m
           - sensor.uptime
@@ -250,12 +254,19 @@ views:
         hours_to_show: 48
         entities:
           - entity: sensor.freebsd_router_kbytesec_sent
+            name: Router sent
           - entity: sensor.freebsd_router_kbytesec_received
+            name: Router received
           - entity: sensor.freebsd_router_packetssec_sent
+            name: Router sent
           - entity: sensor.freebsd_router_packetssec_received
+            name: Router received
           - entity: sensor.memory_use_percent
+            name: HassOS Memory
           - entity: sensor.processor_use
-          
+            name: HassOS Processor
+          - entity: sensor.disk_use_percent_home
+            name: HassOS Disk use
       - type: markdown
         title: 'System Links'
         content: > 
