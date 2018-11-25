@@ -187,6 +187,9 @@ views:
     title: Weather
     icon: mdi:weather-cloudy
     cards:
+      - type: "custom:weather-card"
+        entity_weather: weather.weather
+        entity_sun: sun.sun
       - type: glance
         entities:
           - sensor.weather_temperature
@@ -231,11 +234,6 @@ views:
           - sensor.weather_visibility
           - sensor.weather_wind_bearing
           - sensor.weather_wind_speed
-      - type: weather-forecast
-        entity: weather.weather
-      - type: "custom:weather-card"
-        entity_weather: weather.weather
-        entity_sun: sun.sun
   - id: system
     title: System
     icon: mdi:server
@@ -297,19 +295,35 @@ views:
         title: Automations
         show_header_toggle: false
         entities:
-          - automation.turn_garage_light_off_again
-          - automation.daily_lets_encrypt_renewal
-          - automation.disable_outlet_when_rover_leaves_home
-          - automation.do_at_sunrise
-          - automation.do_at_sunset
-          - automation.enable_outlet_when_rover_is_home
-          - automation.html5_notification_click_action__open_door
-          - automation.home_assistant_shutdown
-          - automation.home_assistant_start
-          - automation.set_gold_lamp_to_relax_when_soil_moisture_is_ok
-          - automation.stop_charging_rover_on_a_weekendholiday
-          - automation.stop_charging_rover_on_a_workday
-          - automation.soil_moisture_is_low
-          - automation.warning_for_upcoming_ssl_expiry
-          - automation.do_a_bit_after_sunrise
-          - automation.notify_when_rovers_is_not_at_home_and_start_charging
+          - entity: automation.turn_garage_light_off_again
+            type: custom:toggle-lock-entity-row
+          - entity: automation.daily_lets_encrypt_renewal
+            type: custom:toggle-lock-entity-row
+          - entity: automation.disable_outlet_when_rover_leaves_home
+            type: custom:toggle-lock-entity-row
+          - entity: automation.do_at_sunrise
+            type: custom:toggle-lock-entity-row
+          - entity: automation.do_at_sunset
+            type: custom:toggle-lock-entity-row
+          - entity: automation.enable_outlet_when_rover_is_home
+            type: custom:toggle-lock-entity-row
+          - entity: automation.html5_notification_click_action__open_door
+            type: custom:toggle-lock-entity-row
+          - entity: automation.home_assistant_shutdown
+            type: custom:toggle-lock-entity-row
+          - entity: automation.home_assistant_start
+            type: custom:toggle-lock-entity-row
+          - entity: automation.set_gold_lamp_to_relax_when_soil_moisture_is_ok
+            type: custom:toggle-lock-entity-row
+          - entity: automation.stop_charging_rover_on_a_weekendholiday
+            type: custom:toggle-lock-entity-row
+          - entity: automation.stop_charging_rover_on_a_workday
+            type: custom:toggle-lock-entity-row
+          - entity: automation.soil_moisture_is_low
+            type: custom:toggle-lock-entity-row
+          - entity: automation.warning_for_upcoming_ssl_expiry
+            type: custom:toggle-lock-entity-row
+          - entity: automation.do_a_bit_after_sunrise
+            type: custom:toggle-lock-entity-row
+          - entity: automation.notify_when_rovers_is_not_at_home_and_start_charging
+            type: custom:toggle-lock-entity-row

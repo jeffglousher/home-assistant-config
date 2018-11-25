@@ -109,9 +109,20 @@
   - alias: ''
     data:
       message: The SSL certificate that is currently used for www.glousher.com will
-        expire in less than 10 days. Please renew asap!
-      title: SSL Certificate Expires Soon
+        expire in less then {{ states.sensor.ssl_certificate_expiry.state_with_unit
+        }} days. Please renew asap!
+      title: SSL Certificate Expires in {{ states.sensor.ssl_certificate_expiry.state_with_unit
+        }}
     service: persistent_notification.create
+  - data:
+      data:
+        url: https://www.glousher.com:8123/lovelace/system
+      message: The SSL certificate that is currently used for www.glousher.com will
+        expire in less then {{ states.sensor.ssl_certificate_expiry.state_with_unit
+        }} days. Please renew asap!
+      title: SSL Certificate Expires in {{ states.sensor.ssl_certificate_expiry.state_with_unit
+        }}
+    service: notify.notify_jeffs_raster
 - id: '1538747724448'
   alias: Daily Let's Encrypt Renewal
   trigger:
