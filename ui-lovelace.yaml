@@ -11,11 +11,18 @@ excluded_entities:
   - light.entertainment_area_1
   - device_tracker.tesla_model_3_5yj3e1ea8hf000718_location_tracker
   - device_tracker.b4e62ae90d29
-  - device_tracker.404e36902186
+  - device_tracker.3c286d2305e1
   - device_tracker.android957114c2e834a0d6gloushercom
-  - sensor.temperature
-  - sensor.moisture
+  - sensor.soiltemperature
+  - sensor.soilmoisture
   - sensor.weather_icon
+  - sensor.accelerometer
+  - sensor.magnetometer
+  - sensor.analog
+  - sensor.heading
+  - sensor.lightrgb
+  - sensor.altitude
+#  - switch.leds
   - sensor.freebsd_router_bytes_received
   - sensor.freebsd_router_packets_received
   - sensor.freebsd_router_bytes_sent

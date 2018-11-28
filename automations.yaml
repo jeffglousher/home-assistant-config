@@ -40,7 +40,7 @@
   alias: Soil Moisture is Low
   trigger:
   - below: '15'
-    entity_id: sensor.moisture
+    entity_id: sensor.soilmoisture
     platform: numeric_state
   condition: []
   action:
@@ -52,7 +52,7 @@
   - data:
       data:
         url: https://www.glousher.com:8123/lovelace/overview
-      message: 'The moisture level is currently: {{ states.sensor.moisture.state_with_unit
+      message: 'The moisture level is currently: {{ states.sensor.soilmoisture.state_with_unit
         }}'
       title: The Plant is Thirsty!
     service: notify.notify
@@ -60,7 +60,7 @@
   alias: Set Gold Lamp to Relax when Soil Moisture is OK
   trigger:
   - above: '40'
-    entity_id: sensor.moisture
+    entity_id: sensor.soilmoisture
     platform: numeric_state
   condition:
   - condition: state
