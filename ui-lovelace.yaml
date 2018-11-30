@@ -20,13 +20,23 @@ excluded_entities:
   - sensor.magnetometer
   - sensor.analog
   - sensor.heading
+  - sensor.light
   - sensor.lightrgb
   - sensor.altitude
 #  - switch.leds
+  - switch.output0
+  - switch.output1
+  - switch.output2
   - sensor.freebsd_router_bytes_received
   - sensor.freebsd_router_packets_received
   - sensor.freebsd_router_bytes_sent
   - sensor.freebsd_router_packets_sent
+  - binary_sensor.input0
+  - binary_sensor.input1
+  - binary_sensor.input2
+  - sensor.analog0
+  - sensor.analog1
+  - sensor.analog2
 resources:
   - url: /local/toggle-lock-entity-row.js
     type: js
@@ -238,9 +248,11 @@ views:
           - sensor.weather_precip
           - sensor.weather_precip_accumulation
           - sensor.weather_pressure
+          - sensor.pressure
           - sensor.weather_visibility
           - sensor.weather_wind_bearing
           - sensor.weather_wind_speed
+          - sensor.season
   - id: system
     title: System
     icon: mdi:server
@@ -334,3 +346,17 @@ views:
             type: custom:toggle-lock-entity-row
           - entity: automation.notify_when_rovers_is_not_at_home_and_start_charging
             type: custom:toggle-lock-entity-row
+  - id: development
+    title: Development
+    icon: mdi:developer-board
+    cards:
+      - type: history-graph
+        hours_to_show: 48
+        title: Soil Moisture - Trigger Filter
+        entities:
+          - entity: sensor.filtered_soil_moisture
+            name: Filtered
+          - entity: sensor.stats_mean
+            name: Mean
+          - entity: sensor.soilmoisture
+            name: Sensor

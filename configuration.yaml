@@ -216,6 +216,20 @@ binary_sensor:
     province: CA
  
 sensor:
+  - platform: season
+    type: astronomical
+  - platform: statistics
+    entity_id: sensor.soilmoisture
+  - platform: filter
+    name: "filtered soil moisture"
+    entity_id: sensor.soilmoisture
+    filters:
+      - filter: outlier
+        window_size: 4
+        radius: 4.0
+      - filter: lowpass
+        time_constant: 10
+        precision: 2
   - platform: darksky
     name: Weather
     api_key: !secret darksky_api_key
@@ -281,7 +295,7 @@ plant:
    sensors:
      moisture: sensor.soilmoisture
      temperature: sensor.soiltemperature
-#      brightness: sensor.my_sensor_brightnes ## finish the Pi programming!!!
+     brightness: sensor.light
      
 device_tracker: # tracking also inlcudes Tesla which is not shown here
   - platform: nmap_tracker
