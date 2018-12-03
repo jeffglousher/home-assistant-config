@@ -40,7 +40,7 @@
   alias: Soil Moisture is Low
   trigger:
   - below: '15'
-    entity_id: sensor.soilmoisture
+    entity_id: sensor.filtered_soil_moisture
     platform: numeric_state
   condition: []
   action:
@@ -153,7 +153,16 @@
   condition: []
   action:
   - data:
-      entity_id: switch.flux
+      entity_id: switch.living_room_flux
+    service: switch.turn_on
+  - data:
+      entity_id: switch.garage_flux
+    service: switch.turn_on
+  - data:
+      entity_id: switch.kitchen_flux
+    service: switch.turn_on
+  - data:
+      entity_id: switch.dining_flux
     service: switch.turn_on
 - id: '1540154226330'
   alias: Stop charging Rover on a workday

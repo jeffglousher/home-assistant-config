@@ -199,13 +199,33 @@ switch:
     name: Thunder
     host: 192.168.1.81
   - platform: flux
+    name: Kitchen Flux
     lights:
-      - light.kitchen
-      - light.dining
-      - light.living_room
-      - light.garage
+      - light.sink_lightstrip
+    disable_brightness_adjust: True
     mode: mired
-
+  - platform: flux
+    name: Dining Flux
+    lights:
+      - light.hue_ambiance_spot_1
+      - light.hue_ambiance_spot_2
+      - light.hue_ambiance_spot_3
+    disable_brightness_adjust: True
+    mode: mired
+  - platform: flux
+    name: Living Room Flux
+    lights:
+      - light.crystal_lamp
+      - light.gold_lamp
+    disable_brightness_adjust: True
+    mode: mired
+  - platform: flux
+    name: Garage Flux
+    lights:
+      - light.hue_color_downlight_1
+    disable_brightness_adjust: True
+    mode: mired
+    
 shopping_list:
 
 binary_sensor:

@@ -144,8 +144,17 @@ views:
                 - light.hue_color_downlight_1
       - type: entities
         entities:
-          - entity: switch.flux
-            name: Home Flux light:sun tracking
+          - entity: switch.living_room_flux
+            name: Living room - Flux light/sun tracking
+            type: custom:toggle-lock-entity-row
+          - entity: switch.garage_flux
+            name: Garage - Flux light/sun tracking
+            type: custom:toggle-lock-entity-row
+          - entity: switch.kitchen_flux
+            name: Kitchen - Flux light/sun tracking
+            type: custom:toggle-lock-entity-row
+          - entity: switch.dining_flux
+            name: Dining room - Flux light/sun tracking
             type: custom:toggle-lock-entity-row
   - id: rover
     title: Rover
@@ -239,14 +248,11 @@ views:
             name: Indoor humidity
       - type: glance
         entities:
-          - sensor.weather_daily_max_precip_intensity
-          - sensor.weather_moon_phase
           - sensor.weather_nearest_storm_distance
           - sensor.weather_precip_intensity
           - sensor.weather_ozone
           - sensor.weather_uv_index
           - sensor.weather_precip
-          - sensor.weather_precip_accumulation
           - sensor.weather_pressure
           - sensor.pressure
           - sensor.weather_visibility
