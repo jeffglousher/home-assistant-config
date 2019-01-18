@@ -244,3 +244,16 @@
   - data:
       entity_id: light.garage
     service: light.turn_off
+- id: '1547788214677'
+  alias: Start Charging Rover
+  trigger:
+  - at: 05:00:00
+    platform: time
+  condition:
+  - condition: state
+    entity_id: group.rover
+    state: home
+  action:
+  - data:
+      entity_id: switch.tesla_model_3_5yj3e1ea8hf000718_charger_switch
+    service: switch.turn_on

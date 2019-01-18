@@ -30,3 +30,11 @@ android957114c2e834a0d6gloushercom:
   name: Jeff-nmap
   picture:
   track: true
+
+tesla_model_3_5yj3e1eb7jf128897_location_tracker:
+  hide_if_away: false
+  icon: mdi:car-side
+  mac:
+  name: EVe-gps
+  picture:
+  track: true

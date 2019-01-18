@@ -1,20 +1,20 @@
 homeassistant:
   name: Home # Name of the location where Home Assistant is running
-  latitude: 37.545253 # Location required to calculate the time the sun rises and sets
-  longitude: -121.972196
-  elevation: 17 # Impacts weather/sunrise data (altitude above sea level in meters)
+  latitude: 42.732239 # Location required to calculate the time the sun rises and sets
+  longitude: -78.697996
+  elevation: 314 # Impacts weather/sunrise data (altitude above sea level in meters)
   unit_system: metric # metric for Metric, imperial for Imperial
-  time_zone: America/Los_Angeles # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Toronto # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   customize: !include customize.yaml # Customization file, not sure why this is formatted differently from below
 
 zone:
   - name: Home
-    latitude: 37.545253
-    longitude: -121.972196
-    radius: 50
-  - name: Estates #
-    latitude: 37.5465142
-    longitude: -121.9718834
+    latitude: 42.732239
+    longitude: -78.697996
+    radius: 150
+  - name: Tesla
+    latitude: 42.860168
+    longitude: -78.839716
     radius: 200
 
 recorder: # configure the connection to the external mySQL database, running as a docker container on a different host
@@ -31,6 +31,10 @@ media_player: # configure basic control on the TV, unfortunatly it anly allows f
   - platform: samsungtv
     name: TV
     host: 192.168.1.30
+
+nest:
+  client_id: !secret nest_id
+  client_secret: !secret nest_secret
 
 mqtt: # Configure LAN accessible MQTT server, running as a docker container on a different host
   broker: 192.168.1.51

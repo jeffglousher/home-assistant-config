@@ -3,7 +3,7 @@ plant.window:
 climate.tesla_model_3_5yj3e1ea8hf000718_hvac_climate_system:
   friendly_name: Rover HVAC
 sensor.tesla_model_3_5yj3e1ea8hf000718_battery_sensor:
-  friendly_name: Battery Charge
+  friendly_name: Rover Battery
   icon: mdi:car-battery
 group.rover:
   icon: mdi:car-side
@@ -12,23 +12,23 @@ switch.thunder:
 switch.bugzapper:
   icon: mdi:bug
 switch.tesla_model_3_5yj3e1ea8hf000718_charger_switch:
-  friendly_name: Enable Charging
+  friendly_name: Rover Enable Charge
   icon: mdi:battery-charging-80
 switch.teslacharger:
   friendly_name: Home Charger Outlet
   icon: mdi:ev-station
 switch.tesla_model_3_5yj3e1ea8hf000718_maxrange_switch:
-  friendly_name: Enable 100% Charge
+  friendly_name: Rover Enable 100% Charge
   icon: mdi:battery-charging-100
 binary_sensor.iss:
   icon: mdi:satellite-variant
 binary_sensor.tesla_model_3_5yj3e1ea8hf000718_charger_sensor:
-  friendly_name: Charging Status
+  friendly_name: Rover Charging
   icon: mdi:car-electric
 sensor.charger_watts:
   icon: mdi:chart-histogram
 binary_sensor.tesla_model_3_5yj3e1ea8hf000718_parking_brake_sensor:
-  friendly_name: Parking Brake
+  friendly_name: Rover Parking Brake
   icon: mdi:parking
 binary_sensor.workday_sensor:
   friendly_name: Workday
@@ -38,27 +38,17 @@ group.jeff:
 group.mary_frances:
   icon: mdi:human-female
 sensor.tesla_model_3_5yj3e1ea8hf000718_temperature_sensor_inside:
-  friendly_name: Inside Car
+  friendly_name: Rover Inside
 sensor.tesla_model_3_5yj3e1ea8hf000718_temperature_sensor_outside:
-  friendly_name: Outside Car
+  friendly_name: Rover Outside
 lock.tesla_model_3_5yj3e1ea8hf000718_door_lock:
-  friendly_name: Door Lock
+  friendly_name: Rover Door Lock
 sensor.tesla_model_3_5yj3e1ea8hf000718_mileage_sensor:
-  friendly_name: Car Mileage
+  friendly_name: Rover Odometer
   icon: mdi:highway
 sensor.tesla_model_3_5yj3e1ea8hf000718_range_sensor:
-  friendly_name: Estimated Range
+  friendly_name: Rover Estimated Range
   icon: mdi:road
-light.hue_ambiance_spot_1:
-  friendly_name: Spot 1
-light.hue_ambiance_spot_2:
-  friendly_name: Spot 2
-light.hue_ambiance_spot_3:
-  friendly_name: Spot 3
-light.sink_lightstrip:
-  friendly_name: Lightstrip
-light.hue_color_downlight_1:
-  friendly_name: Lamp
 sensor.humidity:
   friendly_name: Indoor Humidity
 sensor.disk_free_home:
@@ -69,3 +59,32 @@ sensor.network_in_enp2s1:
   friendly_name: Network in
 sensor.network_out_enp2s1:
   friendly_name: Network out
+climate.tesla_model_3_5yj3e1eb7jf128897_hvac_climate_system:
+  friendly_name: EVe HVAC
+sensor.tesla_model_3_5yj3e1eb7jf128897_battery_sensor:
+  friendly_name: EVe Battery
+  icon: mdi:car-battery
+binary_sensor.tesla_model_3_5yj3e1eb7jf128897_charger_sensor:
+  friendly_name: EVe Charging
+  icon: mdi:car-electric
+switch.tesla_model_3_5yj3e1eb7jf128897_charger_switch:
+  friendly_name: EVe Enable Charge
+  icon: mdi:battery-charging-80
+lock.tesla_model_3_5yj3e1eb7jf128897_door_lock:
+  friendly_name: EVe Door Lock
+switch.tesla_model_3_5yj3e1eb7jf128897_maxrange_switch:
+  friendly_name: EVe  Enable 100% Charge
+  icon: mdi:battery-charging-100
+sensor.tesla_model_3_5yj3e1eb7jf128897_mileage_sensor:
+  friendly_name: EVe Odometer
+  icon: mdi:highway
+binary_sensor.tesla_model_3_5yj3e1eb7jf128897_parking_brake_sensor:
+  friendly_name: EVe Parking Brake
+  icon: mdi:parking
+sensor.tesla_model_3_5yj3e1eb7jf128897_range_sensor:
+  friendly_name: EVe Estimated Range
+  icon: mdi:road
+sensor.tesla_model_3_5yj3e1eb7jf128897_temperature_sensor_inside:
+  friendly_name: EVe Inside
+sensor.tesla_model_3_5yj3e1eb7jf128897_temperature_sensor_outside:
+  friendly_name: EVe Outside
