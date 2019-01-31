@@ -88,3 +88,13 @@ sensor.tesla_model_3_5yj3e1eb7jf128897_temperature_sensor_inside:
   friendly_name: EVe Inside
 sensor.tesla_model_3_5yj3e1eb7jf128897_temperature_sensor_outside:
   friendly_name: EVe Outside
+binary_sensor.living_room_thermostat_has_leaf:
+  icon: mdi:leaf
+binary_sensor.kids_room_thermostat_has_leaf:
+  icon: mdi:leaf
+binary_sensor.dining_room_thermostat_has_leaf:
+  icon: mdi:leaf
+binary_sensor.master_bedroom_thermostat_has_leaf:
+  icon: mdi:leaf
+binary_sensor.den_thermostat_has_leaf:
+  icon: mdi:leaf

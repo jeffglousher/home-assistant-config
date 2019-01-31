@@ -247,7 +247,7 @@
 - id: '1547788214677'
   alias: Start Charging Rover
   trigger:
-  - at: 05:00:00
+  - at: 04:00:00
     platform: time
   condition:
   - condition: state

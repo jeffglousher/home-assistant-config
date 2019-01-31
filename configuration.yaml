@@ -197,6 +197,12 @@ tesla: # Tesla car tracking
   username: !secret tesla_user
   password: !secret tesla_password
 
+vacuum:
+  - platform: roomba
+    host: !secret roomba_ip
+    username: !secret roomba_blid
+    password: !secret roomba_password
+    
 switch:
   - platform: wake_on_lan
     mac_address: "70:85:c2:4c:de:8f"
