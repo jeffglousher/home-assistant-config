@@ -85,6 +85,12 @@
   - data:
       name: solarized-light
     service: frontend.set_theme
+  - data:
+      entity_id: switch.aeotec_zw132_dual_nano_switch_switch
+    service: switch.turn_off
+  - data:
+      entity_id: light.laundry_room
+    service: light.turn_on
 - id: '1538743708457'
   alias: Do at Sunset
   trigger:
@@ -98,6 +104,12 @@
   - data:
       name: solarized-dark
     service: frontend.set_theme
+  - data:
+      entity_id: switch.aeotec_zw116_nano_switch_switch
+    service: switch.turn_on
+  - data:
+      entity_id: switch.aeotec_zw132_dual_nano_switch_switch
+    service: switch.turn_on
 - id: '1538746855607'
   alias: Warning for Upcoming SSL Expiry
   trigger:
@@ -153,13 +165,16 @@
   condition: []
   action:
   - data:
+      entity_id: switch.entryway_flux
+    service: switch.turn_on
+  - data:
+      entity_id: switch.hallway_flux
+    service: switch.turn_on
+  - data:
       entity_id: switch.living_room_flux
     service: switch.turn_on
   - data:
-      entity_id: switch.garage_flux
-    service: switch.turn_on
-  - data:
-      entity_id: switch.kitchen_flux
+      entity_id: switch.dancefloor_flux
     service: switch.turn_on
   - data:
       entity_id: switch.dining_flux
@@ -257,3 +272,16 @@
   - data:
       entity_id: switch.tesla_model_3_5yj3e1ea8hf000718_charger_switch
     service: switch.turn_on
+- id: '1549464632324'
+  alias: Do at Bedtime (~11:00 pm)
+  trigger:
+  - at: '23:00:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: switch.aeotec_zw116_nano_switch_switch
+    service: switch.turn_off
+  - data:
+      entity_id: light.laundry_room
+    service: light.turn_on

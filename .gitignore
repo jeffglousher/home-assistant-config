@@ -12,3 +12,5 @@ html5_push_registrations.conf
 .esphomelib_version
 esphomeyaml/roomba/.pioenvs/
 esphomeyaml/roomba/.piolibdeps/
+OZW_Log.txt
+pyozw.sqlite

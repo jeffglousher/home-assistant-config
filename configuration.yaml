@@ -1,20 +1,20 @@
 homeassistant:
   name: Home # Name of the location where Home Assistant is running
-  latitude: 42.732239 # Location required to calculate the time the sun rises and sets
-  longitude: -78.697996
-  elevation: 314 # Impacts weather/sunrise data (altitude above sea level in meters)
+  latitude: !secret home_lat # Location required to calculate the time the sun rises and sets
+  longitude: !secret home_long
+  elevation: !secret home_elev # Impacts weather/sunrise data (altitude above sea level in meters)
   unit_system: metric # metric for Metric, imperial for Imperial
   time_zone: America/Toronto # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   customize: !include customize.yaml # Customization file, not sure why this is formatted differently from below
 
 zone:
   - name: Home
-    latitude: 42.732239
-    longitude: -78.697996
+    latitude: !secret home_lat
+    longitude: !secret home_long
     radius: 150
   - name: Tesla
-    latitude: 42.860168
-    longitude: -78.839716
+    latitude: !secret tes_lat
+    longitude: !secret tes_long
     radius: 200
 
 recorder: # configure the connection to the external mySQL database, running as a docker container on a different host
@@ -208,48 +208,74 @@ switch:
     mac_address: "70:85:c2:4c:de:8f"
     name: Thunder
     host: 192.168.1.81
+    
   - platform: flux
-    name: Kitchen Flux
+    name: Entryway Flux
     lights:
-      - light.sink_lightstrip
+      - light.entryway
     disable_brightness_adjust: True
     mode: mired
+    start_colortemp: 2237 #Relax color temperature
+    sunset_colortemp: 2890 #Read color temperature
+    stop_colortemp: 2237 #Relax color temperature
+
   - platform: flux
-    name: Dining Flux
+    name: Hallway Flux
     lights:
-      - light.hue_ambiance_spot_1
-      - light.hue_ambiance_spot_2
-      - light.hue_ambiance_spot_3
+      - light.hallway
     disable_brightness_adjust: True
     mode: mired
+    start_colortemp: 2237 #Relax color temperature
+    sunset_colortemp: 2890 #Read color temperature
+    stop_colortemp: 2237 #Relax color temperature
+
   - platform: flux
     name: Living Room Flux
     lights:
-      - light.crystal_lamp
-      - light.gold_lamp
+      - light.living_room
     disable_brightness_adjust: True
     mode: mired
+    start_colortemp: 2237 #Relax color temperature
+    sunset_colortemp: 2890 #Read color temperature
+    stop_colortemp: 2237 #Relax color temperature
+
   - platform: flux
-    name: Garage Flux
+    name: Dancefloor Flux
     lights:
-      - light.hue_color_downlight_1
+      - light.dancefloor
     disable_brightness_adjust: True
     mode: mired
-    
-shopping_list:
+    start_colortemp: 2237 #Relax color temperature
+    sunset_colortemp: 2890 #Read color temperature
+    stop_colortemp: 2237 #Relax color temperature
+
+  - platform: flux
+    name: Dining Flux
+    lights:
+      - light.dining
+    disable_brightness_adjust: True
+    mode: mired
+    start_colortemp: 2237 #Relax color temperature
+    sunset_colortemp: 2890 #Read color temperature
+    stop_colortemp: 2237 #Relax color temperature
 
 binary_sensor:
   - platform: iss
     show_on_map: false
+
   - platform: workday
     country: US
     province: CA
  
 sensor:
+  - platform: steam_online
+    api_key: steam_api
+    accounts:
+      - 76561197993790475
+
   - platform: season
     type: astronomical
-  - platform: statistics
-    entity_id: sensor.soilmoisture
+
   - platform: filter
     name: "filtered soil moisture"
     entity_id: sensor.soilmoisture
@@ -260,6 +286,7 @@ sensor:
       - filter: lowpass
         time_constant: 10
         precision: 2
+
   - platform: darksky
     name: Weather
     api_key: !secret darksky_api_key
@@ -312,13 +339,13 @@ sensor:
 # System Uptime
   - platform: uptime
     unit_of_measurement: hours
-# Tesla - Rover charger power tracking
+# Dehumidifier Power Tracking
   - platform: template
     sensors:
-      charger_watts:
-        friendly_name: "Home Charger Power"
+      dehumidifier_watts:
+        friendly_name: "Dehumidifier Power"
         unit_of_measurement: "w"
-        value_template: '{% if states.switch.teslacharger %}{{ states.switch.teslacharger.attributes.current_power_w }}{% else %}Off{% endif %}'
+        value_template: "{{ states.switch.teslacharger.attributes.current_power_w }}"
      
 plant:
  window:
@@ -341,6 +368,10 @@ device_tracker: # tracking also inlcudes Tesla which is not shown here
 tts: # Text to speech
   - platform: google
   
+shopping_list:
+
+system_health:
+
 notify:
   - platform: html5
     name: notify

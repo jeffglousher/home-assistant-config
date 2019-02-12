@@ -14,9 +14,7 @@ switch.bugzapper:
 switch.tesla_model_3_5yj3e1ea8hf000718_charger_switch:
   friendly_name: Rover Enable Charge
   icon: mdi:battery-charging-80
-switch.teslacharger:
-  friendly_name: Home Charger Outlet
-  icon: mdi:ev-station
+switch.teslacharger: {}
 switch.tesla_model_3_5yj3e1ea8hf000718_maxrange_switch:
   friendly_name: Rover Enable 100% Charge
   icon: mdi:battery-charging-100
@@ -98,3 +96,17 @@ binary_sensor.master_bedroom_thermostat_has_leaf:
   icon: mdi:leaf
 binary_sensor.den_thermostat_has_leaf:
   icon: mdi:leaf
+switch.aeotec_zw116_nano_switch_switch:
+  friendly_name: Front Porch Light
+  icon: mdi:lightbulb
+light.aeotec_zw111_nano_dimmer_level:
+  friendly_name: Dining Chandelier
+switch.aeotec_zw132_dual_nano_switch_switch_2:
+  friendly_name: Inside Garage
+  icon: mdi:lightbulb
+switch.aeotec_zw132_dual_nano_switch_switch_3:
+  friendly_name: Garage
+  icon: mdi:lightbulb
+switch.aeotec_zw132_dual_nano_switch_switch:
+  friendly_name: Garage Door
+  icon: mdi:lightbulb

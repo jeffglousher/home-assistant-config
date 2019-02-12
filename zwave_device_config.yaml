@@ -1,0 +1,9 @@
+sensor.aeotec_zw111_nano_dimmer_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.aeotec_zw111_nano_dimmer_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.aeotec_zw111_nano_dimmer_heat:
+  ignored: true
+  polling_intensity: 0

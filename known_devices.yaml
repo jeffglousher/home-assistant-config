@@ -38,3 +38,11 @@ tesla_model_3_5yj3e1eb7jf128897_location_tracker:
   name: EVe-gps
   picture:
   track: true
+
+google_maps_106922046115748880970:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Jeff-phone
+  picture: https://lh3.googleusercontent.com/a-/AAuE7mDyXeZgm_AniIHMvS7WlD3P5VT3pYsXGIwrQEMsqQ
+  track: true
