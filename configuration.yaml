@@ -35,6 +35,12 @@ media_player: # configure basic control on the TV, unfortunatly it anly allows f
 nest:
   client_id: !secret nest_id
   client_secret: !secret nest_secret
+  
+alarm_control_panel:
+  platform: alarmdotcom
+  username: !secret alarm_user
+  password: !secret alarm_pass
+  code: !secret alarm_code
 
 mqtt: # Configure LAN accessible MQTT server, running as a docker container on a different host
   broker: 192.168.1.51

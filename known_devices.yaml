@@ -46,3 +46,11 @@ google_maps_106922046115748880970:
   name: Jeff-phone
   picture: https://lh3.googleusercontent.com/a-/AAuE7mDyXeZgm_AniIHMvS7WlD3P5VT3pYsXGIwrQEMsqQ
   track: true
+
+google_maps_103080859852821264538:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Mary Frances-phone
+  picture: https://lh3.googleusercontent.com/a-/AAuE7mB4rLaDh5I_FmVOD2cXkBR7Vzat2ZFDZ5MazNwH
+  track: true
