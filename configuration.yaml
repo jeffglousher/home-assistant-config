@@ -360,12 +360,13 @@ plant:
      temperature: sensor.soiltemperature
      brightness: sensor.light
      
-device_tracker: # tracking also inlcudes Tesla which is not shown here
+device_tracker:
   - platform: nmap_tracker
     hosts:
     - 192.168.1.31
     - 192.168.1.32
     - 192.168.1.33
+    - 192.168.1.36
   - platform: google_maps
     username: !secret google_user_gh
     password: !secret google_password_gh
@@ -377,6 +378,8 @@ tts: # Text to speech
 shopping_list:
 
 system_health:
+
+default_config:
 
 notify:
   - platform: html5

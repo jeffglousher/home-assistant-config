@@ -54,3 +54,11 @@ google_maps_103080859852821264538:
   name: Mary Frances-phone
   picture: https://lh3.googleusercontent.com/a-/AAuE7mB4rLaDh5I_FmVOD2cXkBR7Vzat2ZFDZ5MazNwH
   track: true
+
+tesla_model_3_glousher_com:
+  hide_if_away: false
+  icon: mdi:car-connected
+  mac: 04:4E:AF:D1:18:67
+  name: EVe-nmap
+  picture:
+  track: true

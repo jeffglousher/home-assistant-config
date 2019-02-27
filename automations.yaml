@@ -12,19 +12,19 @@
       topic: status/homeassistant
     service: mqtt.publish
 - id: '1538715712827'
-  alias: Enable Outlet when Rover is Home
+  alias: Enable garage interior lights when a car arrives Home after dark
   trigger:
   - entity_id: group.rover
+    platform: state
+    to: home
+  - entity_id: group.eve
     platform: state
     to: home
   condition: []
   action:
   - data:
-      entity_id: switch.teslacharger
+      entity_id: switch.aeotec_zw132_dual_nano_switch_switch_2
     service: switch.turn_on
-  - data:
-      entity_id: light.garage
-    service: light.turn_on
 - id: '1538717746774'
   alias: Disable Outlet when Rover leaves Home
   trigger:
@@ -250,15 +250,15 @@
 - id: '1542882910962'
   alias: Turn garage light off again
   trigger:
-  - entity_id: light.garage
+  - entity_id: switch.aeotec_zw132_dual_nano_switch_switch_2
     for: 00:10:00
     platform: state
     to: 'on'
   condition: []
   action:
   - data:
-      entity_id: light.garage
-    service: light.turn_off
+      entity_id: switch.aeotec_zw132_dual_nano_switch_switch_2
+    service: switch.turn_off
 - id: '1547788214677'
   alias: Start Charging Rover
   trigger:
@@ -284,4 +284,4 @@
     service: switch.turn_off
   - data:
       entity_id: light.laundry_room
-    service: light.turn_on
+    service: light.turn_off
